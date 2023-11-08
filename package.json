@@ -1,0 +1,44 @@
+{
+  "name": "recipe-manager",
+  "description": "Recipe Manager for CS 361",
+  "license": "MIT",
+  "author": "Git-R-Done",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently --kill-others \"vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "cross-env DEV_ENV=true electron .",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package": "npm run build && electron-forge package",
+    "bundle": "npm run build && electron-forge make"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@melt-ui/pp": "^0.1.2",
+    "@melt-ui/svelte": "^0.59.0",
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
+    "@tailwindcss/typography": "tailwindcss/typography",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^27.0.3",
+    "electron-reload": "^2.0.0-alpha.1",
+    "postcss": "^8.4.31",
+    "svelte": "^4.2.2",
+    "svelte-sequential-preprocessor": "^2.0.1",
+    "tailwindcss": "^3.3.5",
+    "vite": "^4.5.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "lucide-svelte": "^0.292.0"
+  }
+}
