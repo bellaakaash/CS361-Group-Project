@@ -7,9 +7,9 @@ CS 361 (Software Engineering) Course Group Project
     - I'm using [Node Version Manager](https://github.com/coreybutler/nvm-windows) with
     `nvm install latest` and `nvm use latest`
 - `npm` (Tested with v10.2.3)
-    - Update to the latest version with `nvm install -g npm@latest`
+    - Update to the latest version with `npm install -g npm@latest`
 - `yarn` (Tested with v1.22.19)
-    - Update to the latest version with `nvm install -g yarn@latest`
+    - Update to the latest version with `npm install -g yarn@latest`
 
 ### Suggestions
 #### VS Code Extensions
