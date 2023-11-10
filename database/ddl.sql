@@ -167,7 +167,7 @@ INSERT INTO shopping_list (user_id, ingredient_id, required_quantity) VALUES
 -- Insert sample data into 'recipe_reviews'
 INSERT INTO recipe_reviews (recipe_id, user_id, rating, review) VALUES
 (1, 2, 5, 'Delicious classic recipe with a twist.'),
-(2, 1, 4, 'Tasty, but could use more spice.');
+(2, 1, 4, 'Tasty, but could use less spice.');
 
 -- Insert sample data into 'nutrition_info'
 INSERT INTO nutrition_info (recipe_id, calories, protein, carbohydrates, fat, sodium, sugar) VALUES
