@@ -1,15 +1,10 @@
 <script>
-  export let name;
-  import Example from "./components/Example.svelte";
+  import ComponentShowcase from "./components/ComponentShowcase.svelte";
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
-  <Example/>
+  <h1>Component Showcase</h1>
+  <ComponentShowcase />
 </main>
 
 <style>
