@@ -3,10 +3,7 @@
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT,  -- Assuming you're planning to store hashed passwords
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email TEXT UNIQUE NOT NULL
 );
 
 -- recipes table
@@ -22,6 +19,15 @@ CREATE TABLE IF NOT EXISTS recipes (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+--  categories table
+CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
+);
+
+-- Add a category_id column to the 'recipes' table
+ALTER TABLE recipes ADD COLUMN category_id INTEGER;
 
 -- ingredients table
 CREATE TABLE IF NOT EXISTS ingredients (
@@ -119,9 +125,9 @@ CREATE TABLE IF NOT EXISTS recipe_media (
 );
 
 -- Insert sample data into 'users'
-INSERT INTO users (username, email, password_hash) VALUES
-('john_doe', 'john@example.com', 'hashedpassword123'),
-('jane_smith', 'jane@example.com', 'anotherhashedpass');
+INSERT INTO users (username, email) VALUES
+('john_doe', 'john@example.com'),
+('jane_smith', 'jane@example.com');
 
 -- Insert sample data into 'recipes'
 INSERT INTO recipes (user_id, title, cuisine_type, preparation_time, servings, instructions) VALUES
@@ -178,8 +184,3 @@ INSERT INTO nutrition_info (recipe_id, calories, protein, carbohydrates, fat, so
 INSERT INTO user_favorite_recipes (user_id, recipe_id) VALUES
 (1, 2),
 (2, 1);
-
--- -- Insert sample data into 'recipe_media'
--- INSERT INTO recipe_media (recipe_id, media_type, media_url) VALUES
--- (1, 'Image', 'http://example.com/media/carbonara.jpg'),
--- (2, 'Image', 'http://example.com/media/cheeseburger.jpg');
