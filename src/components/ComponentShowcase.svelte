@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Calendar from "./Calendar.svelte";
+  import Calendar from "./Calendar/Calendar.svelte";
 
   import { createAccordion, melt } from "@melt-ui/svelte";
   import { slide } from "svelte/transition";

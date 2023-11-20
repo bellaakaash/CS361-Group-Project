@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { current_user } from "../stores";
+  import { current_user } from "../../stores";
 
-  import UserSelect from "./UserSelect.svelte";
+  import UserSelect from "../UserSelect.svelte";
 
   import {
     createCalendar,
@@ -39,13 +39,11 @@
     decorative: true,
   });
 
-  let selected_date = "##/##/##";
+  let selectedDate = Date.now();
 
   function dialogDate(date: string) {
-    selected_date = date;
+    selectedDate = Date.parse(date);
   }
-
-  current_user.set("Bob"); // temporary until user selection workflow is set
 </script>
 
 <div use:melt={$portalled}>
@@ -72,14 +70,14 @@
         </div>
         <div use:melt={$vertical} class="h-4 w-[1px] bg-magnum-900" />
         <div role="doc-subtitle" class="text-sm">
-          {selected_date}
+          {new Date(selectedDate).toLocaleDateString()}
         </div>
       </div>
       <p use:melt={$description} class="mb-5 mt-2 leading-normal text-zinc-600">
         Add or remove recipes from your schedule. Click save when you're done.
       </p>
 
-      <RecipeDialogContent />
+      <RecipeDialogContent {selectedDate} />
 
       <button
         use:melt={$close}

@@ -6,11 +6,18 @@ export const family = writable(
 );
 family.subscribe((val) => localStorage.setItem("family", JSON.stringify(val)));
 
-export const schedule = writable(
-  JSON.parse(localStorage.getItem("schedule") || "{}")
+export const schedules = writable(
+  JSON.parse(localStorage.getItem("schedules") || "{}")
 );
-schedule.subscribe((val) =>
-  localStorage.setItem("schedule", JSON.stringify(val))
+schedules.subscribe((val) =>
+  localStorage.setItem("schedules", JSON.stringify(val))
+);
+
+export const recipes = writable(
+  JSON.parse(localStorage.getItem("recipes") || "{}")
+);
+recipes.subscribe((val) =>
+  localStorage.setItem("recipes", JSON.stringify(val))
 );
 
 export const current_user = writable(
