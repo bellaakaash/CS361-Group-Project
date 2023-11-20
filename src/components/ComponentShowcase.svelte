@@ -1,7 +1,6 @@
 <script lang="ts">
   import Calendar from "./Calendar/Calendar.svelte";
-  import File from "./Recipe Details/File.svelte";
-  import Test from "./Recipe Details/File.svelte";
+  import File from "./Recipe Details/Details.svelte";
 
   import { createAccordion, melt } from "@melt-ui/svelte";
   import { slide } from "svelte/transition";
@@ -23,11 +22,6 @@
       id: "2",
       title: "Recipe Details",
       component: File,
-    },
-    {
-      id: "3",
-      title: "Recipe Details Test",
-      component: Test,
     },
   ];
 

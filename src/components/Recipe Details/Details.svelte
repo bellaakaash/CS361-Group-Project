@@ -145,6 +145,10 @@
 </section>
 
 <style lang="postcss">
+  h1 {
+    @apply text-xl font-bold;
+  }
+
   #toc > h2 {
     @apply text-xl font-bold;
   }
