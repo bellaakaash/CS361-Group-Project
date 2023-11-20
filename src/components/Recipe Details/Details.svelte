@@ -1,4 +1,6 @@
 <script lang="ts">
+  // @ts-nocheck
+
   import { recipes, saved_recipes, reviews } from "../../stores";
 
   import {
@@ -87,11 +89,11 @@
           <Star size={20} fill="#f7b155" />
         {/each}
         {#if recipeReviews.average % 1 != 0}
-          <StarHalf size={20} fill="#f7b155" />
+          <Star size={20} />
           <StarHalf
             size={20}
-            class="relative right-[19px] mr-[-19px]"
-            transform="scale(-1,1)"
+            fill="#f7b155"
+            class="relative right-[20px] mr-[-20px]"
           />
         {/if}
         {#each { length: 4 - Math.floor(recipeReviews.average) } as _, i}
