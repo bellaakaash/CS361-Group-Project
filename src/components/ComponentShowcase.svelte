@@ -1,5 +1,7 @@
 <script lang="ts">
   import Calendar from "./Calendar/Calendar.svelte";
+  import File from "./Recipe Details/File.svelte";
+  import Test from "./Recipe Details/File.svelte";
 
   import { createAccordion, melt } from "@melt-ui/svelte";
   import { slide } from "svelte/transition";
@@ -8,14 +10,24 @@
     elements: { content, item, trigger, root },
     helpers: { isSelected },
   } = createAccordion({
-    defaultValue: "item-1",
+    defaultValue: "2",
   });
 
   const items = [
     {
       id: "1",
-      title: "Calender",
+      title: "Calendar",
       component: Calendar,
+    },
+    {
+      id: "2",
+      title: "Recipe Details",
+      component: File,
+    },
+    {
+      id: "3",
+      title: "Recipe Details Test",
+      component: Test,
     },
   ];
 
@@ -27,7 +39,7 @@
 </script>
 
 <div {...$root}>
-  {#each items as { id, title, component: description }, i}
+  {#each items as { id, title, component }}
     <div
       use:melt={$item(id)}
       class="overflow-hidden transition-colors first:rounded-t-xl
@@ -43,7 +55,7 @@
           <div
             id="comp-{id}"
             class="px-5 py-4"
-            use:ComponentGenerator={[description, id]}
+            use:ComponentGenerator={[component, id]}
           />
         </div>
       {/if}

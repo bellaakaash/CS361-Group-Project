@@ -13,6 +13,20 @@ schedules.subscribe((val) =>
   localStorage.setItem("schedules", JSON.stringify(val))
 );
 
+export const reviews = writable(
+  JSON.parse(localStorage.getItem("reviews") || "{}")
+);
+reviews.subscribe((val) =>
+  localStorage.setItem("reviews", JSON.stringify(val))
+);
+
+export const saved_recipes = writable(
+  JSON.parse(localStorage.getItem("saved_recipes") || "{}")
+);
+saved_recipes.subscribe((val) =>
+  localStorage.setItem("saved_recipes", JSON.stringify(val))
+);
+
 export const recipes = writable(
   JSON.parse(localStorage.getItem("recipes") || "{}")
 );
