@@ -1,7 +1,7 @@
 <script lang="ts">
   // @ts-nocheck
 
-  import { recipes, saved_recipes, reviews } from "../../stores";
+  import {recipes, saved_recipes, reviews} from "../../stores";
 
   import {
     createSeparator,
@@ -10,22 +10,22 @@
     type CreateSeparatorProps,
   } from "@melt-ui/svelte";
   import DetailsTree from "./DetailsTree.svelte";
-  import { Heart, Star, StarHalf } from "lucide-svelte";
+  import {Heart, Star, StarHalf} from "lucide-svelte";
 
   export let RecipeID = 1;
   const recipeDetails = $recipes[RecipeID];
   const recipeReviews = $reviews[RecipeID];
 
   const {
-    elements: { root: horizontal },
+    elements: {root: horizontal},
   } = createSeparator({
     orientation: "horizontal",
     decorative: true,
   });
 
   const {
-    elements: { item },
-    states: { activeHeadingIdxs, headingsTree },
+    elements: {item},
+    states: {activeHeadingIdxs, headingsTree},
   } = createTableOfContents({
     selector: "#toc",
     exclude: ["h1", "h4", "h5", "h6"],
@@ -79,25 +79,25 @@
 
 <section class="text-left">
   <div class="flex flex-row gap-2">
-    <h1 class="grow">{recipeDetails.Title}</h1>
+    <h1 class="grow">{recipeDetails.title}</h1>
     <button
       class="rounded-full ring ring-inset ring-magnum-400 flex flex-row items-center gap-2 p-2 px-3"
     >
       <p>Rated</p>
       <div class="flex flex-row static">
-        {#each { length: Math.floor(recipeReviews.average) } as _, i}
-          <Star size={20} fill="#f7b155" />
+        {#each {length: Math.floor(recipeReviews.average)} as _, i}
+          <Star size={20} fill="#f7b155"/>
         {/each}
         {#if recipeReviews.average % 1 != 0}
-          <Star size={20} />
+          <Star size={20}/>
           <StarHalf
             size={20}
             fill="#f7b155"
             class="relative right-[20px] mr-[-20px]"
           />
         {/if}
-        {#each { length: 4 - Math.floor(recipeReviews.average) } as _, i}
-          <Star size={20} />
+        {#each {length: 4 - Math.floor(recipeReviews.average)} as _, i}
+          <Star size={20}/>
         {/each}
       </div>
     </button>
@@ -108,25 +108,27 @@
       class="rounded-full bg-magnum-400 flex flex-row items-center gap-2 p-2 px-3"
     >
       <p>Save this recipe</p>
-      <Heart size={20} fill="#FFFFFF{saved ? 'FF' : '00'}" />
+      <Heart size={20} fill="#FFFFFF{saved ? 'FF' : '00'}"/>
     </button>
   </div>
   <div class="flex flex-row static">
-    <p class="grow">{recipeDetails.Description}</p>
-    <h2>{recipeDetails.Author}</h2>
+    <!--<p class="grow">{recipeDetails.description}</p>-->
+    <p class="grow">Description</p>
+    <h2>{recipeDetails.author}</h2>
   </div>
-  <div use:melt={$horizontal} class="my-3.5 h-[1px] w-full bg-magnum-900" />
+  <div use:melt={$horizontal} class="my-3.5 h-[1px] w-full bg-magnum-900"/>
   <div class="flex flex-row max-h-96">
     <div
       id="toc"
       class="space-y-2 overflow-y-auto rounded-lg bg-white p-4 text-neutral-900 grow"
     >
-      {#each recipeDetails.Instructions as { heading, details }}
-        <h2>{heading}</h2>
-        {#each details as detail}
-          <p>{detail}</p>
-        {/each}
-      {/each}
+      <!-- Instructions not formatted in database to match design -->
+      <!--//      {#each recipeDetails.instructions as {heading, details}}-->
+      <!--//        <h2>{heading}</h2>-->
+      <!--//        {#each details as detail}-->
+      <!--//          <p>{detail}</p>-->
+      <!--//        {/each}-->
+      <!--//      {/each}-->
     </div>
 
     <div
@@ -165,16 +167,10 @@
 
   .hide-heading {
     display: inline-flex;
-    height: theme(spacing.8);
     cursor: default;
     align-items: center;
     justify-content: center;
-    border-radius: theme(borderRadius.md);
-    background-color: theme(colors.magnum.200);
-    padding-inline: theme(spacing.4);
     line-height: 1;
-    font-weight: theme(fontWeight.semibold);
-    color: theme(colors.magnum.900);
     @apply transition;
 
     &:hover {

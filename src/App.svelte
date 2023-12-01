@@ -4,7 +4,7 @@
 
 <main>
   <h1>Component Showcase</h1>
-  <ComponentShowcase />
+  <ComponentShowcase/>
 </main>
 
 <style>
