@@ -124,6 +124,21 @@ function categorizeRecipe(recipeId, categoryId) {
   });
 }
 
+function addUser(username, email, dietary, callback) {
+  const sql = `INSERT INTO users (username, email, dietary) VALUES (?, ?, ?)`;
+  db.run(sql, [username, email, dietary], function(err) {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, { id: this.lastID });
+  });
+}
+
+// Expose the function for external access
+module.exports = {
+  addUser
+};
+
 function addMealToPlan(date, mealType, recipeId, callback) {
   const sql = `INSERT INTO meal_plans (date, meal_type, recipe_id) VALUES (?, ?, ?)`;
   db.run(sql, [date, mealType, recipeId], function(err) {
@@ -158,4 +173,23 @@ function searchRecipesByIngredient(ingredient, callback) {
 // Expose the function for external access
 module.exports = {
   searchRecipesByIngredient
+};
+
+function searchRecipesByTitle(title, callback) {
+  const sql = `
+      SELECT *
+      FROM recipes
+      WHERE title LIKE ?
+  `;
+  db.all(sql, [`%${title}%`], function(err, rows) {
+      if (err) {
+          return callback(err);
+      }
+      return callback(null, rows);
+  });
+}
+
+// Expose the function for external access
+module.exports = {
+  searchRecipesByTitle
 };
