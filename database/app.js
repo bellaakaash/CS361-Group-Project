@@ -123,3 +123,18 @@ function categorizeRecipe(recipeId, categoryId) {
     console.log('Recipe with ID ' + recipeId + ' has been categorized under category ID: ' + categoryId);
   });
 }
+
+function addMealToPlan(date, mealType, recipeId, callback) {
+  const sql = `INSERT INTO meal_plans (date, meal_type, recipe_id) VALUES (?, ?, ?)`;
+  db.run(sql, [date, mealType, recipeId], function(err) {
+      if (err) {
+          return callback(err);
+      }
+      return callback(null, { id: this.lastID });
+  });
+}
+
+// Expose the function for external access (e.g., via IPC in an Electron app)
+module.exports = {
+  addMealToPlan
+};
