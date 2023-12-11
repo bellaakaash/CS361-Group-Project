@@ -138,3 +138,24 @@ function addMealToPlan(date, mealType, recipeId, callback) {
 module.exports = {
   addMealToPlan
 };
+
+function searchRecipesByIngredient(ingredient, callback) {
+    const sql = `
+        SELECT recipes.*
+        FROM recipes
+        JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
+        JOIN ingredients ON recipe_ingredients.ingredient_id = ingredients.id
+        WHERE ingredients.name LIKE ?
+    `;
+    db.all(sql, [`%${ingredient}%`], function(err, rows) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, rows);
+    });
+}
+
+// Expose the function for external access
+module.exports = {
+    searchRecipesByIngredient
+};
